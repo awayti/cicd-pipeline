@@ -1,7 +1,7 @@
 pipeline {
   agent {
-    docker {
-      image 'tina'
+    dockerfile {
+      filename '/root/cicd-pipeline/Dockerfile'
     }
 
   }
