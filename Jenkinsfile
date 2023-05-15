@@ -1,11 +1,27 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'tina'
+    }
+
+  }
   stages {
-    stage('first') {
+    stage('build') {
       steps {
-        dockerNode(image: 'tinasimage')
+        sh '''/root/cicd-pipeline/scripts/build.sh
+'''
       }
     }
 
+    stage('test') {
+      steps {
+        sh '''/root/cicd-pipeline/scripts/test.sh
+'''
+      }
+    }
+
+  }
+  environment {
+    tinasimage = ''
   }
 }
